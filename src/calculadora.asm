@@ -16,72 +16,69 @@ section .text
     global _start
 
 _start:
-    ; Print prompt1
     mov eax, 4
     mov ebx, 1
     mov ecx, prompt1
     mov edx, prompt1_len
     int 0x80
 
-    ; Read first number
+    ; Aca muestro el numero
     mov eax, 3
     mov ebx, 0
     mov ecx, num1
     mov edx, 4
     int 0x80
 
-    ; Convert first number from ASCII to integer
+    ; De ASCII a entero
     sub byte [num1], '0'
     movzx eax, byte [num1]
     mov [num1], eax
 
-    ; Print prompt2
     mov eax, 4
     mov ebx, 1
     mov ecx, prompt2
     mov edx, prompt2_len
     int 0x80
 
-    ; Read second number
+    ; Segundo numero
     mov eax, 3
     mov ebx, 0
     mov ecx, num2
     mov edx, 4
     int 0x80
 
-    ; Convert second number from ASCII to integer
+    ; De ASCII a entero x2
     sub byte [num2], '0'
     movzx eax, byte [num2]
     mov [num2], eax
 
-    ; Perform addition
+    ; Suma
     mov al, [num1]
     add al, [num2]
     add al, '0'
     mov [res], al
 
-    ; Print result_sum
     mov eax, 4
     mov ebx, 1
     mov ecx, result_sum
     mov edx, result_sum_len
     int 0x80
 
-    ; Print the sum
+    ; Mostrar la suma
     mov eax, 4
     mov ebx, 1
     mov ecx, res
     mov edx, 1
     int 0x80
 
-    ; Print newline
+    ; El print
     mov eax, 4
     mov ebx, 1
     mov ecx, newline
     mov edx, 1
     int 0x80
 
-    ; Exit
+    
     mov eax, 1
     xor ebx, ebx
     int 0x80
